@@ -1,0 +1,11 @@
+{% extends "blog/base.html" %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+
+{% block content %}
+   <h2>You have been logout out</h2>
+    <div class="row justify-content-center">
+              <small class="text-muted">
+                 <a class='ml-3' href="{% url 'register' %}">Log In Again</a>
+              </small>
+  </div>
+{% endblock content %}

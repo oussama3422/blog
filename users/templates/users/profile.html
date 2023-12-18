@@ -1,0 +1,30 @@
+{% extends "blog/base.html" %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+{%load static%}
+
+{% block content %}
+<div class="content-section">
+  <div class="media">
+    {% if user.profile.image %}
+      <img src="{{ user.profile.image.url }}" class="rounded-circle" width="50px" height="50px">
+    {% else %}
+      <img src="{% static 'default.png' %}" class="rounded-circle" width="50px" height="50px">
+    {% endif %}
+    <div class="media-body ml-2">
+      <h2 class="account-heading">{{ user.username }}</h2>
+      <h2 class="text-secondary">{{ user.email }}</h2>
+    </div>
+  </div>
+  <div class="container mt-5">
+            <h2 class="card-title mb-4">Profile Info</h2>
+            <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ user_form }}
+              {{ profile_form }}
+              <div class="col-12 mt-3">
+                 <button type="submit" class="btn btn-outline-primary">Update</button>
+           </form>
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+
+
+{% block content %}
+    {% for post in dummy_data %}
+     <article class="media content-section">
+      <img src="{{ post.author.profile.image.url }}" class="rounded-circle" width="50px" height="50px">
+       <div>
+        <div>
+          <a classs="mr-2" href="">{{post.author}}</a>
+          <small class="text-muted">{{post.date_posted |timesince}} ago</small>
+        </div>
+        <div>
+          <h2><a class="article-title" href="#">{{post.title}}</a></h2>
+          <p class="article-content">{{post.content}}</p>
+        </div>
+       </div>
+     </article>
+    {%endfor%}
+{% endblock content %}
+    
