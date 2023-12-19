@@ -1,0 +1,44 @@
+{% extends "blog/base.html" %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+          <div class="card-body">
+            <h2 class="card-title mb-4">Blog Post</h2>
+            <form method="POST">
+              {% csrf_token %}
+              {% if form.non_field_errors %}
+                <div class="alert alert-danger mb-3">
+                  {{ form.non_field_errors|safe }}
+                </div>
+              {% endif %}
+              {% if form.errors %}
+                <div class="alert alert-danger mb-3">
+                  <strong>Error(s):</strong>
+                  <ul>
+                    {% for error in form.errors %}
+                      <li>{{ error }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+              {% for field in form %}
+                <div class="mb-3">
+                  <div class="mb-2">
+                    {{ field.label_tag }}
+                  </div>
+                  {{ field }}
+                  <div class="invalid-feedback">{{ field.errors }}</div>
+                </div>
+              {% endfor %}
+              <div class="col-12 mt-3">
+                <button type="submit" class="btn btn-outline-primary">Post</button>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
