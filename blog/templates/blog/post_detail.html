@@ -4,7 +4,7 @@
 {% block content %}
      <article class="media content-section">
       <img src="{{ object.author.profile.image.url }}" class="rounded-circle" width="50px" height="50px">
-       <div>
+       <div class="media-body ml-2">
         <div>
           <a classs="mr-2" href="">{{object.author}}</a>
           <small class="text-muted">{{object.date_posted |timesince}} ago</small>
@@ -13,7 +13,20 @@
           <h2><a class="article-title" href="#">{{object.title}}</a></h2>
           <p class="article-content">{{object.content}}</p>
         </div>
-       </div>
+       
+        {% if post.author == user%}
+        <div class="mt-3">
+          <!-- Add icons for delete and edit post -->
+          <a href="{% url 'post-delete' post.id %}" class="btn btn-outline-danger">
+            <i class="fas fa-trash-alt"></i> Delete
+          </a>
+          <a href="{% url 'post-update' post.id %} " class="btn btn-outline-info">
+            <i class="fas fa-edit"></i> Edit
+          </a>
+        </div>
+        {%endif%}
+      </div>
+       
      </article>
 {% endblock content %}
     
